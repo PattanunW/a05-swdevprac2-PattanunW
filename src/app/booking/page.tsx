@@ -82,6 +82,7 @@ const Booking = () => {
 
       <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={enUS}>
         <DateReserve value={date} onChange={handleDateChange} />
+
       </LocalizationProvider>
 
       <Button
