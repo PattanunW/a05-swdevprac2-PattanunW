@@ -14,7 +14,9 @@ import { enUS } from 'date-fns/locale';
 
 const Booking = () => {
   const [venue, setVenue] = useState('');
-  const [date, setDate] = useState(null);
+  const [date, setDate] = useState<Date | null>(null);
+
+
   const [name, setName] = useState('');
   const [contact, setContact] = useState('');
 
