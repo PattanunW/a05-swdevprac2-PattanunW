@@ -1,21 +1,40 @@
-'use client';
+"use client";
+import React from "react";
 
-import { ReactNode, useState } from 'react';
+export default function InteractiveCard({
+  children,
+  Element,
+}: {
+  children: React.ReactNode;
+  Element: string;
+}) {
+  function onVenueSelected() {
+    alert("You select" + Element);
+  }
+  
+  function onCardMouseAction(event: React.SyntheticEvent){
+    if(event.type == "mouseover"){
+      event.currentTarget.classList.remove('shadow-lg');
+      event.currentTarget.classList.remove('bg-white');
 
-interface InteractiveCardProps {
-  children: ReactNode;
-}
+      event.currentTarget.classList.add('bg-neutral-200');
+      event.currentTarget.classList.add('shadow-2xl');
+    }
+    else{
+      event.currentTarget.classList.remove('shadow-2xl');
+      event.currentTarget.classList.remove('bg-neutral-200');
 
-export default function InteractiveCard({ children }: InteractiveCardProps) {
-  const [isHovered, setIsHovered] = useState(false);
+      event.currentTarget.classList.add('bg-white');
+      event.currentTarget.classList.add('shadow-lg');
+    }
+  }
 
   return (
     <div
-      className={`p-4 rounded-lg bg-white transition-all duration-300 ${
-        isHovered ? 'shadow-2xl bg-neutral-200' : 'shadow-lg'
-      }`}
-      onMouseEnter={(event: React.MouseEvent<HTMLDivElement>) => setIsHovered(true)}
-      onMouseLeave={(event: React.MouseEvent<HTMLDivElement>) => setIsHovered(false)}
+      className="w-1/5 h-[300px] rounded-lg shadow-lg bg-white" 
+      onClick={() => onVenueSelected()}
+      onMouseOver={(e)=>onCardMouseAction(e)}
+      onMouseOut={(e)=>onCardMouseAction(e)}
     >
       {children}
     </div>

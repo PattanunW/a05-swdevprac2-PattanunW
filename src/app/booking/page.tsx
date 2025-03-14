@@ -1,100 +1,37 @@
-'use client';
+import DateReserve from "@/components/DateReserve";
+import { TextField } from "@mui/material";
 
-import React, { useState } from 'react';
-import { Select, MenuItem, FormControl, InputLabel, Button, TextField } from '@mui/material';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
-
-import DateReserve from '@/components/DateReserve';
-
-import { SelectChangeEvent } from '@mui/material/Select';
-
-
-
-
-import { enUS } from 'date-fns/locale';
-
-const Booking = () => {
-  const [venue, setVenue] = useState('');
-  const [date, setDate] = useState<Date | null>(null);
-
-
-  const [name, setName] = useState('');
-  const [contact, setContact] = useState('');
-
-  const handleVenueChange = (event: SelectChangeEvent) => {
-    setVenue(event.target.value);
-  };
-  
-  
-
-  const handleDateChange = (newDate: unknown) => {
-    if (newDate instanceof Date || newDate === null) {
-      setDate(newDate);
-    }
-  };
-  
-  
-
-  const handleBookingSubmit = () => {
-    console.log('Venue:', venue);
-    console.log('Booking Date:', date);
-  };
-
+export default function () {
   return (
-    <div>
-      <h1>Booking</h1>
-      <TextField
-        name="Name-Lastname"
-        label="Name-Lastname"
-        variant="standard"
-        fullWidth
-        margin="normal"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        data-testid="name-input"
-      />
-      <TextField
-        name="Contact-Number"
-        label="Contact-Number"
-        variant="standard"
-        fullWidth
-        margin="normal"
-        value={contact}
-        onChange={(e) => setContact(e.target.value)}
-        data-testid="contact-input"
-      />
-      <FormControl fullWidth style={{ marginBottom: '20px' }}>
-        <InputLabel id="venue-select-label">Select Venue</InputLabel>
-        <Select
-          labelId="venue-select-label"
-          id="venue-select"
-          value={venue}
-          onChange={handleVenueChange}
-          data-testid="venue-select"
-        >
-          <MenuItem value="Bloom">The Bloom Pavilion</MenuItem>
-          <MenuItem value="Spark">Spark Space</MenuItem>
-          <MenuItem value="GrandTable">The Grand Table</MenuItem>
-        </Select>
-      </FormControl>
+    <main className="w-[100%] flex flex-col items-center space-y-5 ">
+      <div className="text-xl font-medium">New Booking</div>
 
-      <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={enUS}>
-        <DateReserve value={date} onChange={handleDateChange} />
-      </LocalizationProvider>
+      <div className="w-fit space-y-2 ">
+        <div className="text-xl text-left text-gray-600 font-medium"> Firstname - Lastname </div>
+        <div>
+          <TextField
+            variant="standard"
+            name="Name-Lastname"
+            label="Name-Lastname"
+          />
+        </div>
 
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleBookingSubmit}
-        style={{ marginTop: '20px' }}
-        data-testid="book-button"
+        <div className="text-x text-left text-gray-600">Contact</div>
+        <div>
+          <TextField
+            variant="standard"
+            name="Contact-Number"
+            label="Contact-Number"
+          />
+        </div>
+      </div>
+      <DateReserve />
+      <button
+        className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-2 text-white shadow-sm"
+        name="Book Venue"
       >
         Book Venue
-      </Button>
-    </div>
+      </button>
+    </main>
   );
-};
-
-export default Booking;
+}
