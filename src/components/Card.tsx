@@ -1,18 +1,24 @@
-import Image from 'next/image';
-import InteractiveCard from './InteractiveCard';
+import Image from "next/image";
+import InteractiveCard from "./InteractiveCard";
 
-interface CardProps {
-  imgSrc: string;
+export default function Card({
+  venueName,
+  imgSrc,
+}: {
   venueName: string;
-}
-
-export default function Card({ imgSrc, venueName }: CardProps) {
+  imgSrc: string;
+}) {
   return (
-    <InteractiveCard>
-      <div className="flex flex-col items-center">
-        <Image src={imgSrc} alt={venueName} width={300} height={200} className="rounded-lg" />
-        <h3 className="mt-2 text-lg font-semibold">{venueName}</h3>
+    <InteractiveCard Element={venueName}>
+      <div className="w-full h-[70%] relative rounded-t-lg">
+        <Image
+          src={imgSrc}
+          alt="Product Picture"
+          fill={true}
+          className="object-cover rounded-t-lg"
+        />
       </div>
+      <div className="w-full h-[30%] p-[10px]">{venueName}</div>
     </InteractiveCard>
   );
 }
