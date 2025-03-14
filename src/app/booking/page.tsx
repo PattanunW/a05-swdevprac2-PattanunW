@@ -6,6 +6,10 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 
+import DateReserve from '@/components/DateReserve';
+
+
+
 import { enUS } from 'date-fns/locale';
 
 const Booking = () => {
@@ -38,6 +42,7 @@ const Booking = () => {
         margin="normal"
         value={name}
         onChange={(e) => setName(e.target.value)}
+        data-testid="name-input"
       />
       <TextField
         name="Contact-Number"
@@ -47,6 +52,7 @@ const Booking = () => {
         margin="normal"
         value={contact}
         onChange={(e) => setContact(e.target.value)}
+        data-testid="contact-input"
       />
       <FormControl fullWidth style={{ marginBottom: '20px' }}>
         <InputLabel id="venue-select-label">Select Venue</InputLabel>
@@ -55,6 +61,7 @@ const Booking = () => {
           id="venue-select"
           value={venue}
           onChange={handleVenueChange}
+          data-testid="venue-select"
         >
           <MenuItem value="Bloom">The Bloom Pavilion</MenuItem>
           <MenuItem value="Spark">Spark Space</MenuItem>
@@ -63,12 +70,7 @@ const Booking = () => {
       </FormControl>
 
       <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={enUS}>
-        <DatePicker
-          label="Booking Date"
-          value={date}
-          onChange={handleDateChange}
-          renderInput={(params) => <TextField {...params} fullWidth margin="normal" />}
-        />
+        <DateReserve value={date} onChange={handleDateChange} />
       </LocalizationProvider>
 
       <Button
@@ -76,6 +78,7 @@ const Booking = () => {
         color="primary"
         onClick={handleBookingSubmit}
         style={{ marginTop: '20px' }}
+        data-testid="book-button"
       >
         Book Venue
       </Button>
