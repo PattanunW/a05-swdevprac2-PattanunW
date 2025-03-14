@@ -8,6 +8,9 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 
 import DateReserve from '@/components/DateReserve';
 
+import { SelectChangeEvent } from '@mui/material/Select';
+
+
 
 
 import { enUS } from 'date-fns/locale';
@@ -20,9 +23,10 @@ const Booking = () => {
   const [name, setName] = useState('');
   const [contact, setContact] = useState('');
 
-  const handleVenueChange = (event: SelectChangeEvent<string>) => {
+  const handleVenueChange = (event: SelectChangeEvent) => {
     setVenue(event.target.value);
   };
+  
   
 
   const handleDateChange = (newDate: unknown) => {
