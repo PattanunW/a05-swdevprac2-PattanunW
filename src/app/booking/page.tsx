@@ -23,9 +23,13 @@ const Booking = () => {
   };
   
 
-  const handleDateChange = (newDate) => {
-    setDate(newDate);
+  const handleDateChange = (newDate: unknown) => {
+    if (newDate instanceof Date || newDate === null) {
+      setDate(newDate);
+    }
   };
+  
+  
 
   const handleBookingSubmit = () => {
     console.log('Venue:', venue);
