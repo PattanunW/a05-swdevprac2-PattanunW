@@ -1,19 +1,21 @@
-import React from 'react';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { enUS } from 'date-fns/locale';
 
 interface DateReserveProps {
   value: Date | null;
   onChange: (newDate: Date | null) => void;
 }
 
-const DateReserve: React.FC<DateReserveProps> = ({ value, onChange }) => {
+export default function DateReserve({ value, onChange }: DateReserveProps) {
   return (
-    <DatePicker
-      label="Booking Date"
-      value={value}
-      onChange={onChange}
-    />
+    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={enUS}>
+      <DatePicker
+        label="Select Date"
+        value={value}
+        onChange={onChange}
+      />
+    </LocalizationProvider>
   );
-};
-
-export default DateReserve;
+}
