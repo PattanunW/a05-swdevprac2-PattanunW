@@ -18,9 +18,10 @@ const Booking = () => {
   const [name, setName] = useState('');
   const [contact, setContact] = useState('');
 
-  const handleVenueChange = (event) => {
+  const handleVenueChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setVenue(event.target.value);
   };
+  
 
   const handleDateChange = (newDate) => {
     setDate(newDate);
