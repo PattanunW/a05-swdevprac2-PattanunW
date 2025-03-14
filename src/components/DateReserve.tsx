@@ -1,20 +1,21 @@
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+'use client';
+
+import * as React from 'react';
+import dayjs from 'dayjs';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { enUS } from 'date-fns/locale';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-interface DateReserveProps {
-  value: Date | null;
-  onChange: (newDate: Date | null) => void;
-}
+export default function DateReserve() {
+  const [selectedDate, setSelectedDate] = React.useState(dayjs());
 
-export default function DateReserve({ value, onChange }: DateReserveProps) {
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={enUS}>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
         label="Select Date"
-        value={value}
-        onChange={onChange}
+        value={selectedDate}
+        onChange={(newValue) => setSelectedDate(newValue)}
+        // revert
       />
     </LocalizationProvider>
   );
