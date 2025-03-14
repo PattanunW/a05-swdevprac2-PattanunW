@@ -1,20 +1,18 @@
-import React from "react";
-import styles from "./card.module.css";
+import Image from 'next/image';
+import InteractiveCard from './InteractiveCard';
 
 interface CardProps {
-  venueName: string;
   imgSrc: string;
+  venueName: string;
 }
 
-const Card: React.FC<CardProps> = ({ venueName, imgSrc }) => {
+export default function Card({ imgSrc, venueName }: CardProps) {
   return (
-    <div className={styles.card}>
-      <img src={imgSrc} alt={venueName} className={styles.image} />
-      <div className={styles.content}>
-        <h2 className={styles.title}>{venueName}</h2>
+    <InteractiveCard>
+      <div className="flex flex-col items-center">
+        <Image src={imgSrc} alt={venueName} width={300} height={200} className="rounded-lg" />
+        <h3 className="mt-2 text-lg font-semibold">{venueName}</h3>
       </div>
-    </div>
+    </InteractiveCard>
   );
-};
-
-export default Card;
+}
